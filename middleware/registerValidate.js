@@ -20,6 +20,6 @@ exports.validateDaftar = [
 ]
 
 exports.validateLogin = [
-    check('username', 'username atau email tidak boleh kosong').notEmpty(),
+    check('email', 'Email tidak boleh kosong').notEmpty().matches(/.+\@.+\..+/).withMessage('Masukan Email yang valid'),
     check('password', 'password tidak boleh kosong').notEmpty()
 ]
