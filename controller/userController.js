@@ -156,7 +156,7 @@ exports.loginHandle = async (req, res) => {
     } else {
         return res.status(401).json({
             status: false,
-            msg: 'Username Incorrect'
+            msg: 'Email not registered'
         })
     }
 }
