@@ -18,6 +18,6 @@ route.post('/register', validateDaftar, validate, registerHandle)
 route.get('/auth/activate/:token', activateHandle)
 // login route
 route.post('/auth/login', validateLogin, validate, loginHandle)
-route.get('/auth/dashboard', chekAuth, allUser)
+route.get('/auth/users', chekAuth, allUser)
 
 module.exports = route
