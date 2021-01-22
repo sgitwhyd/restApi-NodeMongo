@@ -130,10 +130,10 @@ exports.activateHandle = (req, res) => {
 // login handle
 
 exports.loginHandle = async (req, res) => {
-    const { username, password } = req.body
+    const { email, password } = req.body
 
-    const checkUser = await User.findOne({ $or: [{ username: username }, { email: username }] })
-    if (checkUser) {
+    const checkEmail = await User.findOne({ email: email })
+    if (checkEmail) {
         const userPassword = await bcrypt.compare(password, checkUser.password)
         if (userPassword) {
             const idUser = {
