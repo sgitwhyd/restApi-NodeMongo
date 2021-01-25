@@ -11,7 +11,14 @@ module.exports = async (req, res, next) => {
         })
     }
 
-    const decodedToken = jwt.verify(token, process.env.JWT_KEY)
-    req.id = decodedToken.id
-    next()
+    jwt.verify(token, process.env.JWT_KEY, (err, decodedToken) => {
+        if (err) {
+            return res.status(401).json({
+                status: false,
+                msg: 'token expired'
+            })
+        }
+        req.id = decodedToken.id
+        next()
+    })
 }

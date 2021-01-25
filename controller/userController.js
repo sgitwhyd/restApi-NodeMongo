@@ -139,17 +139,10 @@ exports.loginHandle = async (req, res) => {
                 id: checkUser._id
             }
 
-            const token = await jwt.sign(data, process.env.JWT_KEY)
-            return res.status(200).json({
-                status: true,
-                msg: "Login Successfully",
-                token: token
-            })
-        }
-        else {
-            return res.status(404).json({
-                status: false,
-                msg: "Password incorrect"
+            await jwt.sign(data, process.env.JWT_KEY, { expiresIn: '5h' }, (err, token) => {
+                if (err) {
+                    console.log(error)
+                }
             })
         }
     }
