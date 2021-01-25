@@ -131,32 +131,32 @@ exports.activateHandle = (req, res) => {
 
 exports.loginHandle = async (req, res) => {
     const { email, password } = req.body
-
-    const checkEmail = await User.findOne({ email: email })
-    if (checkEmail) {
-        const userPassword = await bcrypt.compare(password, checkUser.password)
-        if (userPassword) {
-            const idUser = {
+    const checkUser = await User.findOne({ email: email })
+    if (checkUser) {
+        const isMatch = await bcrypt.compare(password, checkUser.password)
+        if (isMatch) {
+            const data = {
                 id: checkUser._id
             }
 
-            const token = await jwt.sign(idUser, process.env.JWT_KEY)
+            const token = await jwt.sign(data, process.env.JWT_KEY)
             return res.status(200).json({
                 status: true,
-                msg: 'Login Successfully',
+                msg: "Login Successfully",
                 token: token
             })
-
-        } else {
-            return res.status(401).json({
+        }
+        else {
+            return res.status(404).json({
                 status: false,
-                msg: 'Password Incorrect'
+                msg: "Password incorrect"
             })
         }
-    } else {
-        return res.status(401).json({
+    }
+    else {
+        return res.status(404).json({
             status: false,
-            msg: 'Email not registered'
+            msg: "Email Not Registered"
         })
     }
 }
