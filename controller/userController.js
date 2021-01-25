@@ -141,7 +141,17 @@ exports.loginHandle = async (req, res) => {
 
             await jwt.sign(data, process.env.JWT_KEY, { expiresIn: '5h' }, (err, token) => {
                 if (err) {
-                    console.log(error)
+                    return res.status(404).json({
+                        status: false,
+                        msg: "Ops.. Something Wrong Please login again"
+                    })
+                }
+                else {
+                    return res.status(200).json({
+                        status: true,
+                        msg: "Login Successfully",
+                        token: token
+                    })
                 }
             })
         }
