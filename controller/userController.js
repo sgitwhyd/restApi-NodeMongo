@@ -155,6 +155,12 @@ exports.loginHandle = async (req, res) => {
                 }
             })
         }
+        else {
+            return res.status(404).json({
+                status: false,
+                msg: "Password Incorrect"
+            })
+        }
     }
     else {
         return res.status(404).json({
