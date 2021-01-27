@@ -12,14 +12,14 @@ exports.validate = (req, res, next) => {
 }
 
 exports.validateDaftar = [
-    check('name', 'nama tidak boleh kosong').notEmpty(),
-    check('username', 'Username tidak boleh kosong').notEmpty(),
-    check('email', 'Email tidak boleh kosong').notEmpty().matches(/.+\@.+\..+/).withMessage('Masukan Email yang valid'),
-    check('password').isLength({ min: 8 }).withMessage('Password harus minimal 8 karakter')
-        .matches(/\d/).withMessage('Password harus mengandung angka')
+    check('name', 'Name cannot be empty').notEmpty(),
+    check('username', 'Username cannot be empty').notEmpty(),
+    check('email', 'Email cannot be empty').notEmpty().matches(/.+\@.+\..+/).withMessage('Invalid Email'),
+    check('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long')
+        .matches(/\d/).withMessage('Password must contain numbers')
 ]
 
 exports.validateLogin = [
-    check('email', 'Email tidak boleh kosong').notEmpty().matches(/.+\@.+\..+/).withMessage('Masukan Email yang valid'),
-    check('password', 'password tidak boleh kosong').notEmpty()
+    check('email', 'Email cannot be empty').notEmpty().matches(/.+\@.+\..+/).withMessage('Invalid Email'),
+    check('password', 'Password cannot be empty').notEmpty()
 ]
