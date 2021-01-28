@@ -179,3 +179,8 @@ exports.allUser = async (req, res) => {
         })
     }
 }
+
+exports.deteleUser = async (req, res) => {
+    const id = req.params._id
+    const user = User.findByIdAndRemove({ id: id })
+}

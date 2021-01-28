@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
     if (!token) {
         return res.status(401).json({
             status: false,
-            msg: 'token not empty'
+            msg: 'no token'
         })
     }
 
